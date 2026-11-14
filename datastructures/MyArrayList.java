@@ -35,7 +35,7 @@ public class MyArrayList {
     public static void main(String[] args) {
     MyArrayList list = new MyArrayList();
     for (int i = 1; i <= 5; i++) list.add(i * 10);
-    System.out.println(list.get(10));  
+    System.out.println(list.get(4));  
     System.out.println(list.size()); 
 }
 }
