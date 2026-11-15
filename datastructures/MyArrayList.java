@@ -28,14 +28,47 @@ public class MyArrayList {
         return data[index];
     }
 
+    public int set(int index, int newValue) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index: " + index);
+        }
+
+        int oldValue = data[index];
+
+        data[index] = newValue;
+
+        return oldValue;
+    }
+
+    public int remove(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index: " + index);
+        }
+        int removedValue = data[index];
+        for (int i = index; i < size - 1; i++) {
+            data[i] = data[i + 1];
+        }
+        size--;
+
+        return removedValue;
+    }
+
     public int size() {
         return size;
     }
 
     public static void main(String[] args) {
-    MyArrayList list = new MyArrayList();
-    for (int i = 1; i <= 5; i++) list.add(i * 10);
-    System.out.println(list.get(4));  
-    System.out.println(list.size()); 
-}
+        MyArrayList list = new MyArrayList();
+        for (int i = 1; i <= 5; i++)
+            list.add(i * 10);
+        System.out.println(list.get(4));
+        System.out.println(list.size());
+
+        list.set(0, 99);
+        System.out.println(list.get(0));
+        System.out.println(list.size());
+
+        list.remove(1);
+        System.out.println(list.size());
+    }
 }
