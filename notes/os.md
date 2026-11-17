@@ -40,3 +40,21 @@ until the parent collects its exit status.
 ### Mechanism vs policy
 - Mechanism = how to do it (context switch)
 - Policy = which process to run next (scheduler)
+
+## Ch 5: Process API (fork, exec, wait)
+- fork(): creates a near-identical copy of the calling process (the child),
+  continuing from the same point. Returns twice: 0 in the child, the child's PID
+  in the parent (-1 on failure). Parent and child then run independently;
+  which runs first is up to the scheduler.
+- exec(): replaces the current process's program with a new one. Same process,
+  same PID, no new process. On success it never returns (the old code is gone).
+- wait(): parent blocks until a child finishes, and collects its exit status
+  (this is what clears the zombie state from ch 4).
+
+### Why fork and exec are separate
+The gap between them lets the shell set things up for the new program.
+Example: `ls > out.txt` - the shell forks, the child redirects its output to
+out.txt, then execs ls. ls writes "normally" but its output goes to the file.
+
+### The shell in one loop
+read command -> fork() -> child: exec(command) -> parent: wait() -> repeat
