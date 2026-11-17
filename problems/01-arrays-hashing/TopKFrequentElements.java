@@ -22,6 +22,15 @@ class TopKFrequentElements {
         // }
 
         // bucket sort Time Complexity: O(n), Space Complexity: O(n)
+        // Three words: Count, Bucket, Walk back.
+
+        // Count: count how often each number appears.
+        // map.put(n, map.getOrDefault(n, 0) + 1)
+        // Bucket: put each number into the slot for its count.
+        // freq[count].add(number) in an array of lists of size n + 1
+        // Walk back: go from the highest count down, collecting numbers until you have k.
+        // for (i = n; i > 0; i--), and return once index == k
+         
         List<Integer>[] freq = new List[nums.length + 1];
 
         for (int i = 0; i < freq.length; i++) {
