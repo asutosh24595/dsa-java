@@ -58,3 +58,16 @@ out.txt, then execs ls. ls writes "normally" but its output goes to the file.
 
 ### The shell in one loop
 read command -> fork() -> child: exec(command) -> parent: wait() -> repeat
+
+## Ch 6: Limited Direct Execution
+Goal: run programs directly on the CPU (fast) while the OS keeps control.
+- User mode (restricted) vs kernel mode (full access)
+- System call = trap into the kernel via a pre-set trap table; return-from-trap back to user mode
+- Timer interrupt: hardware regains control every few ms, so no program can hog the CPU
+- Context switch: save current registers (PC, SP...) to the kernel stack, restore the next process's
+
+SDE takeaways:
+- syscalls (I/O, printing) are expensive -> buffer and batch
+- context switches cost time -> thread pools, event loops
+- user/kernel separation = isolation/security
+- code can be preempted between ANY two instructions -> root of race conditions
