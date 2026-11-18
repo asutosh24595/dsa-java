@@ -31,3 +31,17 @@
 - Then edge cases: empty, single element, zeros, negatives, duplicates
 - Force collisions on purpose (keys 5, 21, 37 with 16 buckets)
 - Lengths >= 10 for anything that parses numbers
+
+## Hashing (more)
+- Many groups at once (Valid Sudoku): one set per group in arrays of sets;
+  !set.add(x) on any group = duplicate
+- 2D cell -> box index: (row / 3) * 3 + (col / 3)  (same idea as row * width + col)
+- Run starts (Longest Consecutive): x is a start if x - 1 is NOT in the set;
+  count up only from starts -> O(n). Without the check it's O(n^2)
+- Best so far: best = Math.max(best, candidate), never best = candidate
+
+## Divide and conquer: merge sort
+- Split in half until single elements (already sorted), merge back up
+- sort() only splits; merge() does all the comparing, and only works on sorted inputs
+- Merge = two pointers: take the smaller front, advance that pointer, copy leftovers
+- Use <= in merge to keep equal elements in order (stable)

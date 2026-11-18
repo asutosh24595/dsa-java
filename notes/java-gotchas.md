@@ -51,3 +51,17 @@ with new ArrayList<>() or create lazily with a null check.
 ## getOrDefault only reads
     map.getOrDefault(k, 0)     // returns 0 if missing, but stores nothing
     map.put(k, map.getOrDefault(k, 0) + 1)   // put does the storing
+
+## More gotchas
+- Java is block-scoped (like JS let): a variable declared inside { } doesn't exist after }
+- Integer division: 7 / 2 = 3; % is the remainder (sign follows the left operand)
+- Return values: if a method returns a new object, save it: left = sort(left).
+  If it modifies in place (list.sort()), it returns void - don't assign it
+- `assert` is disabled by default; it only runs with java -ea. Use JUnit assertEquals
+- HashSet / HashMap have no meaningful order (bucket order).
+  Need order? TreeSet (sorted) or LinkedHashSet (insertion order)
+- Arrays.copyOfRange(arr, from, to): `to` excluded, like substring
+
+## Maven
+- mvn test: compiles and runs JUnit tests; target/ is build output -> .gitignore
+- Code in src/main/java, tests in src/test/java, same package so tests can see classes

@@ -34,3 +34,17 @@ Resizing keeps it O(1) amortized per put, same reasoning as ArrayList.
 Cost each line, multiply by how often its loop runs, keep the largest term.
 Always define variables (n, m, u, k).
 Two separate (non-nested) loops add: O(n) + O(n) = O(n).
+
+## Divide and conquer: O(n log n)
+Recurrence T(n) = 2T(n/2) + n -> unrolls to n log n
+- halving gives log n levels; merge does n total work per level
+- same in best/average/worst: the split never depends on the values
+- binary search halves too but recurses into ONE half with O(1) work -> O(log n)
+Rule of thumb: repeated halving -> expect a log n
+
+## Fixed-size input = O(1)
+Valid Sudoku is always 9x9 -> O(1). Say "O(n^2) if generalized to n x n".
+Big O measures growth as input grows; a constant-size input doesn't grow.
+
+## Hidden costs in a line
+toCharArray, substring, copyOfRange copy their data: O(length) time and space
