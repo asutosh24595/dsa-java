@@ -10,5 +10,6 @@ node relinking in resize, final key, boolean remove, MAX_CAPACITY guard.
 2. Comment claimed that "collisions across resizes", but sequential keys never collide
    (each lands in its own bucket). The prev.next branch of remove() never runs
    (verified with a print). Fix: add keys that share a bucket (5, 21, 37 at cap 16).
-3. `assert map.get(-1) == -1` passes whether key -1 exists or not (-1 is also the
-   missing-key value). Fix: assert containsKey(-1), or store a value other than -1.
+3. (minor, verified) Notes correctly warn that -1 is ambiguous and recommend
+   containsKey, but the test `assert map.get(-1) == -1` doesn't follow that advice:
+   it still passes after remove(-1). Fix: assert containsKey(-1) && get(-1) == -1.
